@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="library.js" defer></script>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+    <div class="library">
+        <dialog>
+            <label for="author">Enter Author Name:</label>
+            <input type="text" id="author" name="author" autocomplete="off">
+            <br>
+            <label for="title">Enter Book Title:</label>
+            <input type="text" id="title" name="title" autocomplete="off">
+            <br>
+            <label for="pages">Enter Number of Pages:</label>
+            <input type="number" id="pages" name="pages" autocomplete="off">
+            <br>
+            <label for="status">Enter Status of Book (Read, TBR, etc.):</label>
+            <input type="text" id="status" name="status" autocomplete="off">
+            <br>
+            <button autofocus>Add the book!</button>
+        </dialog>
+        <button class="addBook">Add Book</button>
+    </div>
+</body>
+</html>
