@@ -34,6 +34,10 @@ function deleteItem(e) {
   e.parentElement.remove();
 }
 
+function changeStatus(s) {
+    
+}
+
 function printOut(book) {
   let paragraphElemBook = document.createElement("p");
   let bookBorder = document.createElement("div");
@@ -43,14 +47,23 @@ function printOut(book) {
   deleteBtn.textContent = "delete";
   deleteBtn.classList.add("deleteBtn");
 
+  let editBtn = document.createElement("button");
+  editBtn.textContent = "read/unread";
+  editBtn.classList.add("editBtn");
+
   bookBorder.appendChild(paragraphElemBook);
   bookBorder.appendChild(deleteBtn);
+  bookBorder.appendChild(editBtn);
   paragraphElemBook.innerHTML = `${book.name} by ${book.author}.<br>Total Pages: ${book.totalPages}. Status: ${book.status}.`;
   libraryDiv.appendChild(bookBorder);
 
   deleteBtn.addEventListener("click", function () {
     deleteItem(this);
   });
+
+  editBtn.addEventListener("click", function() {
+    changeStatus(this);
+  })
 }
 
 addBookBtn.addEventListener("click", () => {
