@@ -9,9 +9,7 @@ function Book(name, author, totalPages, status) {
   this.author = author;
   this.totalPages = totalPages;
   this.status = status;
-  this.info = function () {
-    console.log(`${name} by ${author}, ${totalPages} pages, ${status}`);
-  };
+  this.value = [name, author, totalPages, status];
 }
 
 let bookHarryPotter = new Book("Harry Potter and the Philosopher's Stone","J. K. Rowling","352","Read");
@@ -35,7 +33,13 @@ function deleteItem(e) {
 }
 
 function changeStatus(e) {
-    console.log(e.parentElement);
+  const breakpoint = ","
+  const split = e.previousSibling.previousSibling.textContent.split(breakpoint);
+  if (split[3] != "read" || "Read") {
+    split[3] = "read"
+  } else {
+    split[3] = "unread"
+  }
 }
 
 function printOut(book) {
@@ -54,7 +58,7 @@ function printOut(book) {
   bookBorder.appendChild(paragraphElemBook);
   bookBorder.appendChild(deleteBtn);
   bookBorder.appendChild(editBtn);
-  paragraphElemBook.textContent = `${book.name} by ${book.author}. Total Pages: ${book.totalPages}. Status: ${book.status}.`;
+  paragraphElemBook.textContent = book.value.toString();
   libraryDiv.appendChild(bookBorder);
 
   deleteBtn.addEventListener("click", function () {
