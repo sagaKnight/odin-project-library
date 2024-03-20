@@ -35,11 +35,12 @@ function deleteItem(e) {
 function changeStatus(e) {
   const breakpoint = ","
   const split = e.previousSibling.previousSibling.textContent.split(breakpoint);
-  if (split[3] != "read" || "Read") {
-    split[3] = "read"
+  if (split[3] != "Read") {
+    split[3] = "Read"
   } else {
-    split[3] = "unread"
+    split[3] = "Unread"
   }
+  e.previousSibling.previousSibling.textContent = split.toString();
 }
 
 function printOut(book) {
