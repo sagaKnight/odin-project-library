@@ -1,30 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="library.js" defer></script>
-    <link rel="stylesheet" href="stylesheet.css">
-</head>
-<body>
-    <div class="library">
-        <dialog>
-            <label for="author">Enter Author Name:</label>
-            <input type="text" id="author" name="author" autocomplete="off">
-            <br>
-            <label for="title">Enter Book Title:</label>
-            <input type="text" id="title" name="title" autocomplete="off">
-            <br>
-            <label for="pages">Enter Number of Pages:</label>
-            <input type="number" id="pages" name="pages" autocomplete="off">
-            <br>
-            <label for="status">Enter Status of Book (Read, TBR, etc.):</label>
-            <input type="text" id="status" name="status" autocomplete="off">
-            <br>
-            <button autofocus>Add the book!</button>
-        </dialog>
-        <button class="addBook">Add Book</button>
+    <link rel="stylesheet" href="stylesheet.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <h1>Library</h1>
+      </div>
+      <dialog>
+        <button autofocus>X</button>
+        <h1>Enter Book Information</h1>
+        <form action="">
+          <div>
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" />
+          </div>
+          <div>
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author" />
+          </div>
+
+          <div>
+            <label for="pages">Pages</label>
+            <input type="text" name="pages" id="pages" />
+          </div>
+
+          <div>
+            <p>Status of book?</p>
+            <input type="radio" name="status" id="read" value="read" />
+            <label for="read">Read</label>
+            <input type="radio" name="status" id="tbr" value="tbr" />
+            <label for="tbr">Not Read</label>
+          </div>
+
+          <button>Add to Library</button>
+        </form>
+      </dialog>
+      <button>Add a book</button>
+      <div id="library-content"></div>
     </div>
-</body>
+  </body>
 </html>
