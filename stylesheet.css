@@ -54,6 +54,23 @@ input[type="submit"] {
     margin: 20px;
 }
 
+.statusBtn {
+    background-color: lightgray;
+    border: none;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    right: 0%;
+    bottom: 0%;
+    margin: 20px;
+}
+
+.statusBtn:hover {
+    background-color: #b3b3b3;
+    cursor: pointer;
+}
+
 .closeBtn:hover {
     background-color: #c90000;
     cursor: pointer;
@@ -111,6 +128,7 @@ input[type="submit"] {
   padding: 20px;
   background-color: white;
   position: relative;
+  flex-direction: column;
 }
 
 ::backdrop {

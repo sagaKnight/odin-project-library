@@ -4,18 +4,18 @@ const showButton = document.querySelector("dialog + button");
 const closeButton = document.querySelector(".closeBtn");
 const form = document.querySelector("form");
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, status) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  if (read === "read") {
-    this.read = "read";
+  if (status === "read") {
+    this.status = "read";
   } else {
-    this.read = "not read";
+    this.status = "not read";
   }
 
   this.info = function () {
-    return `${this.title} by ${this.author}, ${this.pages}, ${this.read}`;
+    return `${this.title} by ${this.author}, ${this.pages}, ${this.status}`;
   };
 }
 
@@ -25,7 +25,6 @@ function addBookToLibrary(book) {
 
 function checkLibrary(book) {
   for (let bookTitle of document.querySelectorAll("#library-content div h3")) {
-    console.log(bookTitle);
     if (bookTitle.textContent === book.title) {
       return true;
     } else {
@@ -34,23 +33,45 @@ function checkLibrary(book) {
   }
 }
 
+function deleteBook(bookNum) {
+  document.querySelector(`div[book-num="${bookNum}"]`).remove();
+}
+
+function changeStatus(bookNum) {
+  let status = document.querySelector(`div[book-num="${bookNum}"] p`);
+  if (status.textContent === "read") {
+    status.textContent = "not read";
+  } else {
+    status.textContent = "read";
+  }
+}
+
 function printLibrary() {
-  for (let book of myLibrary) {
+  for (let [bookNum, book] of myLibrary.entries()) {
     if (!checkLibrary(book)) {
       const newBookDiv = document.createElement("div");
       const newTitle = document.createElement("h3");
+      const newStatus = document.createElement("p");
       newTitle.textContent = book.title;
+      newStatus.textContent = book.status;
       const newCloseBtn = document.createElement("button");
+      const newStatusBtn = document.createElement("button");
       newCloseBtn.classList.add("closeBtn");
       newCloseBtn.textContent = "x";
+      newStatusBtn.classList.add("statusBtn");
+      newCloseBtn.addEventListener("click", () => deleteBook(bookNum))
+      newStatusBtn.addEventListener("click", () => changeStatus(bookNum))
       newBookDiv.appendChild(newTitle);
+      newBookDiv.appendChild(newStatus);
       newBookDiv.appendChild(newCloseBtn);
+      newBookDiv.appendChild(newStatusBtn);
       const libraryDiv = document.getElementById("library-content");
-      newBookDiv.setAttribute("bookNum", 1);
+      newBookDiv.setAttribute("book-num", bookNum);
       libraryDiv.appendChild(newBookDiv);
     }
   }
 }
+
 
 showButton.addEventListener("click", () => {
   dialog.showModal();
