@@ -46,29 +46,40 @@ function changeStatus(bookNum) {
   }
 }
 
+function createBookDiv(book, bookNum) {
+  const newBookDiv = document.createElement("div");
+  const newTitle = document.createElement("h3");
+  const newStatus = document.createElement("p");
+  newTitle.textContent = book.title;
+  newStatus.textContent = book.status;
+
+  const newCloseBtn = document.createElement("button");
+  newCloseBtn.classList.add("closeBtn");
+  newCloseBtn.textContent = "x";
+  newCloseBtn.addEventListener("click", () => deleteBook(bookNum));
+
+  const newStatusBtn = document.createElement("button");
+  newStatusBtn.classList.add("statusBtn");
+  newStatusBtn.textContent = "";
+  newStatusBtn.addEventListener("click", () => changeStatus(bookNum));
+
+  newBookDiv.appendChild(newTitle);
+  newBookDiv.appendChild(newStatus);
+  newBookDiv.appendChild(newCloseBtn);
+  newBookDiv.appendChild(newStatusBtn);
+  newBookDiv.setAttribute("book-num", bookNum);
+
+  return newBookDiv;
+}
+
+
 function printLibrary() {
+  const libraryDiv = document.getElementById("library-content");
   for (let [bookNum, book] of myLibrary.entries()) {
-    if (!checkLibrary(book)) {
-      const newBookDiv = document.createElement("div");
-      const newTitle = document.createElement("h3");
-      const newStatus = document.createElement("p");
-      newTitle.textContent = book.title;
-      newStatus.textContent = book.status;
-      const newCloseBtn = document.createElement("button");
-      const newStatusBtn = document.createElement("button");
-      newCloseBtn.classList.add("closeBtn");
-      newCloseBtn.textContent = "x";
-      newStatusBtn.classList.add("statusBtn");
-      newCloseBtn.addEventListener("click", () => deleteBook(bookNum))
-      newStatusBtn.addEventListener("click", () => changeStatus(bookNum))
-      newBookDiv.appendChild(newTitle);
-      newBookDiv.appendChild(newStatus);
-      newBookDiv.appendChild(newCloseBtn);
-      newBookDiv.appendChild(newStatusBtn);
-      const libraryDiv = document.getElementById("library-content");
-      newBookDiv.setAttribute("book-num", bookNum);
-      libraryDiv.appendChild(newBookDiv);
-    }
+      if (!checkLibrary(book)) {
+          const newBookDiv = createBookDiv(book, bookNum);
+          libraryDiv.appendChild(newBookDiv);
+      }
   }
 }
 
