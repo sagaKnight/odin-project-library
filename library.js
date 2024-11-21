@@ -1,7 +1,7 @@
 const myLibrary = [];
 const dialog = document.querySelector("dialog");
 const showButton = document.querySelector("dialog + button");
-const closeButton = document.querySelector("dialog > button");
+const closeButton = document.querySelector(".closeBtn");
 const form = document.querySelector("form");
 
 function Book(title, author, pages, read) {
@@ -24,11 +24,12 @@ function addBookToLibrary(book) {
 }
 
 function checkLibrary(book) {
-  for (let div of document.querySelectorAll("#library-content div")) {
-    if (div.innerHTML === book.title) {
-      return true
+  for (let bookTitle of document.querySelectorAll("#library-content div h3")) {
+    console.log(bookTitle);
+    if (bookTitle.textContent === book.title) {
+      return true;
     } else {
-      continue
+      continue;
     }
   }
 }
@@ -36,11 +37,17 @@ function checkLibrary(book) {
 function printLibrary() {
   for (let book of myLibrary) {
     if (!checkLibrary(book)) {
-    const newBookDiv = document.createElement("div");
-    const newTitle = document.createTextNode(book.title);
-    newBookDiv.appendChild(newTitle);
-    const libraryDiv = document.getElementById("library-content");
-    libraryDiv.appendChild(newBookDiv);
+      const newBookDiv = document.createElement("div");
+      const newTitle = document.createElement("h3");
+      newTitle.textContent = book.title;
+      const newCloseBtn = document.createElement("button");
+      newCloseBtn.classList.add("closeBtn");
+      newCloseBtn.textContent = "x";
+      newBookDiv.appendChild(newTitle);
+      newBookDiv.appendChild(newCloseBtn);
+      const libraryDiv = document.getElementById("library-content");
+      newBookDiv.setAttribute("bookNum", 1);
+      libraryDiv.appendChild(newBookDiv);
     }
   }
 }
@@ -61,8 +68,9 @@ form.onsubmit = function (e) {
   const newBook = new Book(title, author, pages, status);
   e.preventDefault();
   addBookToLibrary(newBook);
-  console.log(newBook);
   printLibrary();
+  form.reset();
+  dialog.close();
 };
 
 const mockingbird = new Book("To Kill a Mockingbird", "Harper Lee", 281, false);

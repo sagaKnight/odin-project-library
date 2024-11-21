@@ -41,14 +41,20 @@ input[type="submit"] {
     margin-top: auto;
 }
 
-.container dialog button:first-child {
+.closeBtn {
     background-color: red;
     border: none;
-    border-radius: 50px;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
     color: white;
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    margin: 20px;
 }
 
-.container dialog button:first-child:hover {
+.closeBtn:hover {
     background-color: #c90000;
     cursor: pointer;
 }
@@ -104,6 +110,7 @@ input[type="submit"] {
   min-height: 500px;
   padding: 20px;
   background-color: white;
+  position: relative;
 }
 
 ::backdrop {
